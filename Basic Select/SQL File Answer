@@ -30,3 +30,15 @@ select CITY, STATE from STATION;
 
 select distinct CITY from STATION where ID%2 = 0;
 
+# Weather Observation Station 4
+
+select count(*) - count(distinct CITY) from STATION;
+
+# Weather Observation Station 5
+
+(select CITY, length(CITY) from STATION order by length(CITY) desc,CITY  limit 1)
+union
+(select CITY, length(CITY) from STATION order by length(CITY) asc,CITY  limit 1);
+
+
+
