@@ -55,3 +55,37 @@ select distinct CITY from STATION where lower(substr(CITY,-1,1)) in ("a","e","i"
 # Weather Observation Station 8
 
 select distinct CITY from STATION where substr(CITY,1,1) in ('A','E','I','O','U') and substr(CITY,-1,1) in ('a','e','i','o','u');;
+
+# Weather Observation Station 9
+
+select distinct(CITY) from STATION where left(CITY,1) not in ('A', 'E', 'I','O','U'); --also many other possible ways as in previous cases
+
+# Weather Observation Station 10
+
+select distinct(CITY) from STATION where right(CITY,1) not in ('a','e','i','o','u'); --also many other possible ways as in previous cases
+
+# Weather Observation Station 11
+
+select distinct(CITY) from STATION where left(CITY,1) not in ('A', 'E', 'I','O','U')
+or substr(CITY,-1,1) not in ('a','e','i','o','u');  --also many other possible ways as in previous cases
+
+# Weather Observation Station 12
+
+select distinct(CITY) from STATION where substr(CITY,1,1) not in ('A', 'E', 'I','O','U')
+and right(CITY,1) not in ('a', 'e', 'i','o','u');  --also many other possible ways as in previous cases
+
+# Higher Than 75 Marks
+
+select Name from STUDENTS where Marks>75 order by substr(Name,-3,3),ID;
+                                                      (or)
+select Name from STUDENTS where Marks>75 order by right(Name,3),ID;
+
+# Employee Names
+
+select name from Employee order by name asc;
+
+
+
+
+
+
