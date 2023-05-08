@@ -60,3 +60,25 @@ select round(min(LAT_N),4) from STATION where LAT_N > 38.7780;
 
 select round(LONG_W,4) from STATION where LAT_N >38.7780 order by LAT_N asc limit 1; -- also can be written using sub query as in case of # Weather Observation Station 15
 
+# Weather Observation Station 18
+
+with cte as (
+    select min(LAT_N) as a, min(LONG_W) as b, max(LAT_N) as c, max(LONG_W) as d from STATION
+) select round(abs(a-c) + abs(b-d),4) from cte;
+                                        (or)
+select round((max(LAT_N)-min(LAT_N))+(max(LONG_W) - min(LONG_W)),4) from STATION;
+
+# Weather Observation Station 19
+
+with cte as (
+    select min(LAT_N) as a, max(LAT_N) as b, min(LONG_W) as c, max(LONG_W) as d from STATION
+) select round(sqrt(power((b-a),2) + power((d-c),2)),4) from cte;
+                                        (or)
+select round(sqrt(power((max(LONG_W)-min(LONG_W)),2) + power((max(LAT_N)-min(LAT_N)),2)),4) from STATION;
+
+# Weather Observation Station 20
+
+select round(LAT_N,4) from 
+(select LAT_N, row_number() over(order by LAT_N) as rn from STATION) as s where rn in 
+(select round(count(LAT_N)/2) from STATION);
+                                        
